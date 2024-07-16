@@ -1,15 +1,27 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Book extends Media{
     private int stock;
-    private ArrayList<Integer> reviews; //not related to the String from review
-    //use arrays or arraylists
-    //rating in review should be int or double
+    private ArrayList<Integer> reviews = new ArrayList<>();
 
+    //Constructor
+
+    public Book(String title, String auteur, String ISBN, double price, int stock, ArrayList<Integer> reviews) {
+        super(title, auteur, ISBN, price);
+        this.stock = stock;
+        this.reviews = reviews;
+    }
+
+    public Book(String title, String auteur, String ISBN, double price, int stock) {
+        super(title, auteur, ISBN, price);
+        this.stock = stock;
+    }
+
+    public Book() {
+        super();
+    }
 
     //Getters Setters
-
     public int getStock() {
         return stock;
     }
@@ -27,35 +39,39 @@ public class Book extends Media{
     }
 
     //Methods
-    public void addReview(Review r){ //use arraylist?
+    public void addReview(Review r){
         reviews.add(r.getRating());
 
     }
     public double getAverageRating(){
+        if (reviews.isEmpty()) {
+            return 0;
+        }else{
         double averageRating=0;
         for (int review:reviews){
-            averageRating=+review;
+            averageRating+=review;
+
         }
-        averageRating=averageRating/reviews.size();
+        if (averageRating==0){
+            return 0;
+        }else {
+            averageRating=averageRating/reviews.size();
+        }
         return averageRating;
+        }
     }
     public void purchase(User user){
-        Book book = new Book();
-        user.getPurchasedMedia().add(book);
-        //how to implement user taking out a book? why call user??
+        user.addToCart(this);
+        user.checkout();
+        System.out.println("Book purchased!");
         stock--;
     }
     public boolean isBestSeller(){
-        if (getAverageRating()>=4.5){
-            return true;
-        }else {
-            return false;
-        }
+        return getAverageRating()>=4.5;
 
     }
     public void restock(int quantity){
          stock+=quantity;
-         //add print?
     }
 
     @Override
@@ -69,9 +85,13 @@ public class Book extends Media{
 
     @Override
     public String toString() {
-        return "Book{" +
-                "stock=" + stock +
-                ", reviews=" + reviews +
-                '}';
+        return "--" + getTitle() + "--\n" +
+                "Type: " + getMediaType() + "\n" +
+                "Author: " + getAuteur() + "\n" +
+                "ISBN: " + getISBN() + "\n" +
+                "Price: " + getPrice() + "\n" +
+                "Stock: " + stock + "\n" +
+                "Reviews: " + reviews+ "\n";
     }
+
 }

@@ -1,5 +1,14 @@
+import java.util.ArrayList;
+
 public class AcademicBook extends Book{
     String subject;
+
+    //Constructor
+
+    public AcademicBook(String title, String auteur, String ISBN, double price, int stock, String subject) {
+        super(title, auteur, ISBN, price, stock);
+        this.subject = subject;
+    }
 
     //Set gets
 
@@ -23,8 +32,13 @@ public class AcademicBook extends Book{
 
     @Override
     public String toString() {
-        return "AcademicBook{" +
-                "subject='" + subject + '\'' +
-                '}';
+        return "--" + getTitle() + "--\n" +
+                "Type: " + getMediaType() + "\n" +
+                "Author: " + getAuteur() + "\n" +
+                "ISBN: " + getISBN() + "\n" +
+                "Price: " + getPrice() + "\n" +
+                "Stock: " + getStock() + "\n" +
+                "Subject: " + subject+ "\n";
     }
+
 }

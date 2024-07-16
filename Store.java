@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
 public class Store {
-    private ArrayList<User> users;
-    private ArrayList<Media> medias;
+    private ArrayList<User> users = new ArrayList<>();
+    ;
+    private ArrayList<Media> medias = new ArrayList<>();
     //Getters Setters
 
     public ArrayList<User> getUsers() {
@@ -22,16 +23,28 @@ public class Store {
     }
 
     //Methods
-    public void addUser(User user){
+    public void addUser(User user) {
         users.add(user);
     }
-    public ArrayList<User> displayUsers(){
-       return users;
+
+    public ArrayList<User> displayUsers() {
+        return users;
     }
-    public void addMedia(Media media){
+
+    public void addMedia(Media media) {
         medias.add(media);
     }
-    public ArrayList<Media> displayMedias(){
+
+    public ArrayList<Media> displayMedias() {
         return medias;
+    }
+
+    public Book searchBook(String title) {
+        for (Media media:medias){
+            if (title.equalsIgnoreCase(media.getTitle())){
+                return (Book) media; //used casting
+            }
+        }
+        return null;
     }
 }

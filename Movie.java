@@ -2,7 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie extends Media{
-    private int duration; //in mins
+    private int duration;
+
+    //Constructor
+    public Movie(String title, String director, double price, int duration) {
+        super(title, director, price); //changed the name of Auteur to Director
+        this.duration = duration;
+    }
 
     //Getters Setters
     public int getDuration() {
@@ -15,15 +21,20 @@ public class Movie extends Media{
     //Methods
 
     public void watch(User user){
-        Movie movie = new Movie();
-        user.getPurchasedMedia().add(movie);
+        user.addToCart(this);
+        user.checkout();
 
     }
 
     public ArrayList<Movie> recommendSimilarMovies(ArrayList<Movie> movieCatalog){
-        //how to add movies where the author is the same as the movie?
-        for(Movie movie:)
-        return movieCatalog;
+
+        ArrayList<Movie> listByDirector = new ArrayList<>();
+        for (Movie movie: movieCatalog){
+            if (movie.getAuteur().equalsIgnoreCase(this.getAuteur())){
+                listByDirector.add(movie);
+            }
+        }
+        return listByDirector;
     }
 
     @Override
@@ -38,8 +49,11 @@ public class Movie extends Media{
 
     @Override
     public String toString() {
-        return "Movie{" +
-                "duration=" + duration +
-                '}';
+        return "--" + getTitle() + "--\n" +
+                "Type: " + getMediaType() + "\n" +
+                "Director: " + getAuteur() + "\n" +
+                "Duration: " + duration + "\n" +
+                "Price: " + getPrice()+ "\n";
     }
+
 }

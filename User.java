@@ -3,8 +3,15 @@ import java.util.ArrayList;
 public class User {
     private String userName;
     private String email;
-    private ArrayList<Media> purchasedMedia;
-    private ArrayList<Media> shoppingCart;
+    private ArrayList<Media> purchasedMedia = new ArrayList<>();
+    private ArrayList<Media> shoppingCart = new ArrayList<>();
+
+    //Constructor
+
+    public User(String userName, String email) {
+        this.userName = userName;
+        this.email = email;
+    }
 
     //Getters Setters
 
@@ -49,6 +56,14 @@ public class User {
     }
     public void checkout(){
         purchasedMedia.addAll(shoppingCart);
-        shoppingCart.removeAll(shoppingCart); //how to empty shopping cart? loop?
+        shoppingCart.removeAll(shoppingCart);
     }
+
+    @Override
+    public String toString() {
+        return "--User Details--\n" +
+                "Username: " + userName + "\n" +
+                "Email: " + email+ "\n";
+    }
+
 }

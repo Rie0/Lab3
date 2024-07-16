@@ -1,8 +1,17 @@
+import java.util.ArrayList;
+
 public class Novel extends Book{
 
     private String genre;
 
-    //Get Set
+    //Constructor
+
+    public Novel(String title, String auteur, String ISBN, double price, int stock, String genre) {
+        super(title, auteur, ISBN, price, stock);
+        this.genre = genre;
+    }
+
+    //Getters Setters
     public String getGenre() {
         return genre;
     }
@@ -24,8 +33,13 @@ public class Novel extends Book{
 
     @Override
     public String toString() {
-        return "Novel{" +
-                "genre='" + genre + '\'' +
-                '}';
+        return "--" + getTitle() + "--\n" +
+                "Type: " + getMediaType() + "\n" +
+                "Author: " + getAuteur() + "\n" +
+                "ISBN: " + getISBN() + "\n" +
+                "Price: " + getPrice() + "\n" +
+                "Stock: " + getStock() + "\n" +
+                "Genre: " + genre + "\n";
     }
+
 }

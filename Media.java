@@ -4,6 +4,28 @@ public class Media {
     private String ISBN;
     private double price;
 
+    //Constructor
+
+    public Media(String title, String auteur, String ISBN, double price) {
+        this.title = title;
+        this.auteur = auteur;
+        this.ISBN = ISBN;
+        this.price = price;
+    }
+    public Media(String title, String auteur, double price) {
+        this.title = title;
+        this.auteur = auteur;
+        this.price = price;
+    }
+    public Media(String title, double price) {
+        this.title = title;
+        this.price = price;
+    }
+
+    public Media() {
+
+    }
+
     //Getters Setters
     public String getTitle() {
         return title;
@@ -49,6 +71,6 @@ public class Media {
                 ", auteur='" + auteur + '\'' +
                 ", ISBN='" + ISBN + '\'' +
                 ", price=" + price +
-                '}';
+                '}'+ "\n";
     }
 }
