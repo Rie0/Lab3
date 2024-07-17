@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class AcademicBook extends Book{
-    String subject;
+    private String subject;
 
     //Constructor
 
